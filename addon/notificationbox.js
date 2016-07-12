@@ -69,16 +69,12 @@
  */
 
 const chrome = require("chrome");
-const { emit, on, once, off } = require("sdk/event/core");
+const { emit } = require("sdk/event/core");
 const { EventTarget } = require("sdk/event/target");
-const timers = require("sdk/timers");
-const { validateOptions: valid } = require("sdk/deprecated/api-utils");
 const windowUtils = require("sdk/window/utils");
 const { getMostRecentBrowserWindow } = windowUtils;
 const { uuid } = require("sdk/util/uuid");
 const { Class, mix } = require("sdk/core/heritage");
-
-const validNumber = { is: ["number", "undefined", "null"] };
 
 const USE_PER_WINDOW_NOTIFICATIONS = false;
 
@@ -157,7 +153,7 @@ const banner = new Class({
         let note = this.nb.getNotificationWithValue(this.id);
         this.nb.removeNotification(this.notice);
         emit(this, "AlertSoftKilled", note);
-      },
+      }
     };
 
     let { msg, id, icon, priority, buttons, callback, nb } = options;

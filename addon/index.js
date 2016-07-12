@@ -43,7 +43,7 @@ function showRecommendations(recommendations, tab) {
     buttons.push(
       nb.buttonMaker.yes({
         label: recommendation.label,
-        callback(notebox, button) {
+        callback(notebox) {
           try {
             hideNotificationBar();
             tabs.open(recommendation.url);
@@ -66,10 +66,10 @@ function showRecommendations(recommendations, tab) {
   nb.banner({
     id: notificationBarValue,
     msg: fragment,
-    callback(message) {
+    callback(msg) {
       // Only message should be AlertClose
-      if (message !== "removed") {
-        console.warn("Unexpected message on notificationbox:", message);
+      if (msg !== "removed") {
+        console.warn("Unexpected message on notificationbox:", msg);
         return;
       }
     },
